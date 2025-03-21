@@ -1,0 +1,95 @@
+/* Общие стили страницы */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #008080; /* Зеленовато-синий фон, типичный для старых Windows */
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("https://www.example.com/your-fun-background.jpg"); /* Фон с чем-то веселым */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Контейнер для чата в стиле Windows 98 */
+.chat-container {
+    width: 400px;
+    padding: 20px;
+    background-color: #C0C0C0; /* Светло-серый фон окна */
+    border: 2px solid #000080; /* Синяя рамка вокруг окна */
+    border-radius: 4px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Заголовок окна */
+.chat-container h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000080;
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #000080;
+}
+
+/* Сообщения */
+.message {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+/* Сообщение пользователя */
+.user-message {
+    background-color: #B0E0E6;
+    text-align: right;
+}
+
+/* Сообщение бабушки */
+.babka-message {
+    background-color: #F5FFFA;
+    text-align: left;
+}
+
+/* Кнопка отправки */
+.submit-button {
+    width: 80%;
+    padding: 8px;
+    background-color: #000080;
+    color: #FFFFFF;
+    border: 2px solid #000080;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit-button:hover {
+    background-color: #4169E1;
+    border: 2px solid #4169E1;
+}
+
+/* Инпут для текста */
+.message-input {
+    width: 80%;
+    padding: 8px;
+    border: 2px solid #000080;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Контейнер для чат-формы */
+.message-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
