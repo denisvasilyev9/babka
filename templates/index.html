@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чат-бот</title>
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Чат с ботом</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Чат-бот -->
+
+    <!-- Окно чата -->
     <div id="chatWindow">
         <div id="messages"></div>
-        <input type="text" id="userInput" placeholder="Введите сообщение...">
+        <input type="text" id="userInput" placeholder="Напишите сообщение..." />
         <button id="sendMessage">Отправить</button>
     </div>
 
     <!-- Подсказки -->
     <div id="suggestions">
-        <ul id="suggestionsList"></ul>
+        <ul id="suggestionsList">
+            <!-- Подсказки будут добавляться сюда -->
+        </ul>
     </div>
 
-    <!-- Скрипт -->
-    <script src="https://raw.githubusercontent.com/denisvasilyev9/babka/main/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
