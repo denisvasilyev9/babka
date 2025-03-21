@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Чат-бот</title>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/denisvasilyev9/babka/main/static/css/style.css"></link>
-   
+    <!-- Подключаем CSS файл с GitHub -->
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/denisvasilyev9/babka/main/cssstyle.css">
 </head>
 <body>
-    <!-- Чат-бот -->
-    <div id="chatWindow">
-        <div id="messages"></div>
-        <input type="text" id="userInput" placeholder="Введите сообщение...">
-        <button id="sendMessage">Отправить</button>
+    <div id="chat-container">
+        <div id="chat">
+            <div id="messages"></div>
+            <input type="text" id="userInput" placeholder="Введите сообщение...">
+            <button id="sendMessage">Отправить</button>
+        </div>
+        
+        <!-- Правая панель с подсказками -->
+        <div id="suggestions">
+            <h3>Подсказки:</h3>
+            <ul id="suggestionsList">
+                <!-- Список подсказок будет добавляться динамически -->
+            </ul>
+        </div>
     </div>
 
-    <!-- Подсказки -->
-    <div id="suggestions">
-        <ul id="suggestionsList"></ul>
-    </div>
-
-    <!-- Скрипт -->
+    <!-- Подключаем JS файл с GitHub -->
     <script src="https://raw.githubusercontent.com/denisvasilyev9/babka/main/script.js"></script>
 </body>
 </html>
+
 
