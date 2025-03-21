@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чат-бот</title>
-    <!-- Подключаем CSS файл с GitHub -->
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/denisvasilyev9/babka/main/cssstyle.css">
+    <title>Бабушка Чат</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div id="chat-container">
-        <div id="chat">
-            <div id="messages"></div>
-            <input type="text" id="userInput" placeholder="Введите сообщение...">
-            <button id="sendMessage">Отправить</button>
+    <div class="chat-container">
+        <h1>Бабушка Чат</h1>
+        <div class="messages">
+            <div class="message babka-message">{{ babka_message }}</div>
+            {% if user_message %}
+                <div class="message user-message">{{ user_message }}</div>
+            {% endif %}
         </div>
-        
-        <!-- Правая панель с подсказками -->
-        <div id="suggestions">
-            <h3>Подсказки:</h3>
-            <ul id="suggestionsList">
-                <!-- Список подсказок будет добавляться динамически -->
-            </ul>
-        </div>
-    </div>
 
-    <!-- Подключаем JS файл с GitHub -->
-    <script src="https://raw.githubusercontent.com/denisvasilyev9/babka/main/script.js"></script>
+        <form method="POST" class="message-form">
+            <input type="text" name="message" class="message-input" placeholder="Напишите бабушке..." required>
+            <button type="submit" class="submit-button">Отправить</button>
+        </form>
+    </div>
 </body>
 </html>
-
-
