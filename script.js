@@ -33,17 +33,37 @@ function displayMessage(message, isUser) {
     messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
     messageElement.innerText = message;
     document.getElementById('messages').appendChild(messageElement);
+    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight; // Прокрутка вниз
+}
+
+// Функция отображения подсказок
+function displaySuggestions() {
+    const suggestionsList = document.getElementById('suggestionsList');
+    suggestionsList.innerHTML = '';
+    Object.keys(qaData).forEach(key => {
+        const suggestionItem = document.createElement('li');
+        suggestionItem.innerText = key;
+        suggestionItem.addEventListener('click', () => handleUserInput(key));
+        suggestionsList.appendChild(suggestionItem);
+    });
 }
 
 // Обработчик отправки сообщения
-document.getElementById('sendMessage').addEventListener('click', function() {
-    const userInput = document.getElementById('userInput').value;
-    if (userInput) {
-        displayMessage(userInput, true);
-        document.getElementById('userInput').value = '';
-        const bot
+function handleUserInput(userInput) {
+    displayMessage(userInput, true); // Показываем сообщение пользователя
 
+    const botResponse = qaData[userInput] || "Извините, я не понимаю этот запрос."; // Ответ бота
+    setTimeout(() => displayMessage(botResponse, false), 500); // Задержка перед ответом бота
+    document.getElementById('userInput').value = ''; // Очищаем поле ввода
+}
+
+// Обработчик кнопки отправки
+document.getElementById('sendMessage').addEventListener('click', () => {
+    const userInput = document.getElementById('userInput').value.trim();
+    if (userInput) {
+        handleUserInput(userInput);
+    }
+});
 
 // Инициализация
-document.getElementById('sendMessage').addEventListener('click', handleUserInput);
-displaySuggestions();
+displaySuggestions(); // Загружаем подсказки при старте
