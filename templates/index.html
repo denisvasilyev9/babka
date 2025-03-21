@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат с бабушкой</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .chat-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 0 auto;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .user-message {
+            font-weight: bold;
+        }
+        .babka-message {
+            color: #6c757d;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="message babka-message">
+        {{ babka_message }}
+    </div>
+    {% if user_message %}
+        <div class="message user-message">
+            Ты: {{ user_message }}
+        </div>
+    {% endif %}
+    
+    <form method="POST">
+        <input type="text" name="message" placeholder="Напиши бабушке..." required>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+</body>
+</html>
