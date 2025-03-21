@@ -13,18 +13,7 @@ const qaData = {
     "Когда наступит сингулярность?": "Сложный вопрос! На самом деле, это зависит от множества факторов, но ученые предполагают, что это может случиться в ближайшие десятилетия.",
     "Что такое метавселенная?": "Метавселенная — это цифровая вселенная, где пользователи могут взаимодействовать, создавать и строить виртуальные миры с использованием VR и AR технологий.",
     "Кто такие киберпанки?": "Киберпанки — это персонажи, которые живут в мире высоких технологий, смешанных с социальными проблемами, такими как бедность и коррупция.",
-    "Что такое квантовый компьютер?": "Квантовый компьютер использует принципы квантовой механики, чтобы решать задачи, которые слишком сложны для обычных компьютеров.",
-    "Что ты сегодня делала?": "Сегодня вяжу, как всегда, чаю попила. В доме порядок, милый.",
-    "Ты много вяжешь?": "Ой, да, это меня успокаивает. И тебе советую, если что-то нужно успокоиться, возьми нитки и спицы.",
-    "Что ты любишь делать в свободное время?": "Я люблю читать, вязать, иногда в парк гулять. А ты чем любишь заниматься?",
-    "Ты помнишь, как я был маленьким?": "Конечно, помню! Ты был такой хорошенький малыш, постоянно с игрушками бегал.",
-    "Ты любишь читать книги?": "Да, конечно, люблю. Особенно старинные книги. Совсем недавно перечитывала 'Анну Каренину'.",
-    "Как ты отдыхаешь?": "Ой, я люблю просто посидеть в тишине, выпить чай, иногда немного подремать.",
-    "Что ты думаешь о мире сейчас?": "Ох, мир стал совсем другим, милок. Все так быстро меняется, но мне кажется, что люди всё равно остаются людьми, несмотря на всё.",
-    "Что ты думаешь о современных технологиях?": "Знаешь, я не совсем понимаю эти все гаджеты. Но я горжусь, что могу общаться с тобой через интернет.",
-    "Какая твоя любимая еда?": "Моя любимая еда — это борщ, пироги, ну и вареники с картошкой, конечно!",
-    "Ты когда-нибудь путешествовала?": "Ох, милок, в молодости путешествовала много. Была и в Крыму, и в Москве. А вот сейчас уже тяжело, далеко ездить.",
-    "Ты помнишь своё детство?": "Как же не помнить! Детство было хорошее, простое. Мы бегали по двору, играли с ребятами. Время было спокойное."
+    "Что такое квантовый компьютер?": "Квантовый компьютер использует принципы квантовой механики, чтобы решать задачи, которые слишком сложны для обычных компьютеров."
 };
 
 // Функция отображения сообщения
@@ -33,37 +22,50 @@ function displayMessage(message, isUser) {
     messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
     messageElement.innerText = message;
     document.getElementById('messages').appendChild(messageElement);
-    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight; // Прокрутка вниз
+}
+
+// Функция обработки ввода пользователя
+function handleUserInput() {
+    const userInput = document.getElementById('userInput').value;
+    if (userInput.trim() === '') return;
+
+    displayMessage(userInput, true);
+
+    const botResponse = qaData[userInput] || "Извините, я не понимаю этот вопрос.";
+    displayMessage(botResponse, false);
+    
+    document.getElementById('userInput').value = '';
 }
 
 // Функция отображения подсказок
 function displaySuggestions() {
     const suggestionsList = document.getElementById('suggestionsList');
-    suggestionsList.innerHTML = '';
-    Object.keys(qaData).forEach(key => {
+    const questions = [
+        "Привет", 
+        "Доброе утро", 
+        "Как ты?", 
+        "Самое прогрессивное и экологичное Event агентство", 
+        "Что такое кибердеревня?",
+        "Какие проекты у Яндекса?",
+        "Кто такие кибергуси?",
+        "Что такое искусственный интеллект?",
+        "Когда наступит сингулярность?",
+        "Что такое метавселенная?",
+        "Кто такие киберпанки?",
+        "Что такое квантовый компьютер?"
+    ];
+
+    questions.forEach(question => {
         const suggestionItem = document.createElement('li');
-        suggestionItem.innerText = key;
-        suggestionItem.addEventListener('click', () => handleUserInput(key));
+        suggestionItem.innerText = question;
+        suggestionItem.onclick = () => {
+            document.getElementById('userInput').value = question;
+            handleUserInput();
+        };
         suggestionsList.appendChild(suggestionItem);
     });
 }
 
-// Обработчик отправки сообщения
-function handleUserInput(userInput) {
-    displayMessage(userInput, true); // Показываем сообщение пользователя
-
-    const botResponse = qaData[userInput] || "Извините, я не понимаю этот запрос."; // Ответ бота
-    setTimeout(() => displayMessage(botResponse, false), 500); // Задержка перед ответом бота
-    document.getElementById('userInput').value = ''; // Очищаем поле ввода
-}
-
-// Обработчик кнопки отправки
-document.getElementById('sendMessage').addEventListener('click', () => {
-    const userInput = document.getElementById('userInput').value.trim();
-    if (userInput) {
-        handleUserInput(userInput);
-    }
-});
-
 // Инициализация
-displaySuggestions(); // Загружаем подсказки при старте
+document.getElementById('sendMessage').addEventListener('click', handleUserInput);
+displaySuggestions();
